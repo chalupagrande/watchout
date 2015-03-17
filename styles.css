@@ -3,3 +3,38 @@
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
 
+svg{
+  border: solid 1px black;
+  display: block;
+}
+
+.player{
+  fill: blue;
+}
+.pause{
+  background-color:red;
+  border-radius: 3px;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  width: 50px;
+  cursor: pointer;
+
+}
+
+.play{
+  background-color: green;
+  border-radius: 3px;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  width: 50px;
+  cursor: pointer;
+
+}
