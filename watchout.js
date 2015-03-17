@@ -39,14 +39,6 @@ Enemy.prototype.getRandom = function(){
   return Math.floor(Math.random() * (options.boardSize - options.boardBoarder) + options.boardBoarder);
 }
 
-
-
-// Create Enemy Objects and pushed them into options.enemy_data
-for(var i = 0; i < options.numEnemies; i++){
-  options.enemy_data.push(new Enemy());
-}
-
-
 //PLAYER CLASS ~~~~~~~~~~~~
 
 var Player = function(){
