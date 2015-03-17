@@ -10,6 +10,7 @@ svg{
 
 .player{
   fill: blue;
+  cursor: pointer;
 }
 .pause{
   background-color:red;

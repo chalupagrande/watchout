@@ -54,6 +54,12 @@ var Player = function(){
   this.size = options.player_size
 }
 
+var drag = d3.behavior.drag()  
+             .on('dragstart', function() { player.style('fill', 'red'); })
+             .on('drag', function() { player.attr('cx', d3.event.x)
+                                            .attr('cy', d3.event.y); })
+             .on('dragend', function() { player.style('fill', 'blue'); });
+
 
 
 //~~~~~~~~~ INIT ~~~~~~~~~~~
@@ -83,16 +89,17 @@ var enemies = svg.selectAll('.enemies').data(options.enemy_data).enter().append(
 // Inititalizes Player 
 var player = svg.selectAll('.player').data(options.player_data).enter().append('circle').attr('class', 'player')
                   .attr('r', function(d){ return d.size })
-                  .attr('cx', function(d){ return d.x }).attr('cy', function(d){ return d.y });
+                  .attr('cx', function(d){ return d.x }).attr('cy', function(d){ return d.y })
+                  .call(drag);
 
 
 //Check for collisions
 
 var hasCollisions = function(d,i, cb){
-    var curX = d.attr('cx')* 1;
-    var curY = d.attr('cy')* 1;
-    var pX = player.attr('cx') * 1;
-    var pY = player.attr('cy') * 1;
+    var curX = d.x;
+    var curY = d.y;
+    var pX = player.datum().x * 1;
+    var pY = player.datum().y * 1;
 
     var distanceX = Math.abs(curX - pX);
     var distanceY = Math.abs(curY - pY);
@@ -109,7 +116,7 @@ var hasCollisions = function(d,i, cb){
 
 //! ERROR, only moving the attributes, not the data objects x and y values
 var moveEnemy = function(){
-  d3.selectAll('.enemy').transition().duration(1000)
+  d3.selectAll('.enemy').transition().duration(2000)
     .attr('cx', function(d){ return d.getRandom() })
     .attr('cy', function(d){ return d.getRandom() })
   }
@@ -144,7 +151,7 @@ var gameStep = function(){
 }
  
 
-var id2 = setInterval(moveEnemy, 2000);
+var id2 = setInterval(moveEnemy, 3000);
 var id1 = setInterval(gameStep, 50);
 
 
