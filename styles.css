@@ -4,7 +4,7 @@
 Feel free to use it if you like. */
 
 svg{
-  border: solid 1px black;
+  border: solid 3px black;
   display: block;
 }
 
@@ -13,7 +13,7 @@ svg{
   cursor: pointer;
 }
 .pause{
-  background-color:red;
+  background-color:darkred;
   border-radius: 3px;
   color: white;
   display: inline-block;
@@ -25,9 +25,8 @@ svg{
   cursor: pointer;
 
 }
-
 .play{
-  background-color: green;
+  background-color: darkgreen;
   border-radius: 3px;
   color: white;
   display: inline-block;
@@ -37,5 +36,8 @@ svg{
   text-align: center;
   width: 50px;
   cursor: pointer;
+}
 
+.btn{
+  display:block;
 }

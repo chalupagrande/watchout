@@ -25,6 +25,7 @@ d3.selectAll('.play').on('click', function(){
   id1 = setInterval(moveEnemy, 2000);
   id2 = setInterval(gameStep, 50);
 })
+
 //~~~~~~~~~~~~~~~~
 
 // ENEMY CLASS ~~~~~~~~~~~~
@@ -53,6 +54,7 @@ var Player = function(){
   this.y = options.boardSize /2,
   this.size = options.player_size
 }
+
 
 var drag = d3.behavior.drag()  
              .on('dragstart', function() { player.style('fill', 'red'); })
@@ -96,10 +98,10 @@ var player = svg.selectAll('.player').data(options.player_data).enter().append('
 //Check for collisions
 
 var hasCollisions = function(d,i, cb){
-    var curX = d.x;
-    var curY = d.y;
-    var pX = player.datum().x * 1;
-    var pY = player.datum().y * 1;
+    var curX = this.cx.animVal.value;
+    var curY = this.cy.animVal.value;
+    var pX = d3.selectAll('.player').attr('cx') * 1;
+    var pY = d3.selectAll('.player').attr('cy') * 1;
 
     var distanceX = Math.abs(curX - pX);
     var distanceY = Math.abs(curY - pY);
@@ -127,10 +129,10 @@ var gameStep = function(){
   var collided = false;
 
   collided = collided || enemies.each(function(d,i, cb){
-    return hasCollisions(d,i, function(isTrue){
+    return hasCollisions.call(this, d,i, function(isTrue){
       if(!isTrue){
         score++;
-      }else if(!highscore < score){
+      }else if(highscore > score){
         collisions++;
         score = 0;
         d3.selectAll('.collisions').text(' ' + collisions);
@@ -138,8 +140,8 @@ var gameStep = function(){
         collisions++;
         d3.selectAll('.collisions').text(' ' + collisions);
         highscore = score;
-        score = 0;
-        d3.selectAll('.highscore').text(' ' + highscore);
+        d3.selectAll('.high').text(' ' + highscore)
+        score = 0;;
       }
 
       d3.selectAll('.current').text(' ' + score);
@@ -149,10 +151,6 @@ var gameStep = function(){
   //move player 
  
 }
- 
-
-var id2 = setInterval(moveEnemy, 3000);
-var id1 = setInterval(gameStep, 50);
 
 
 
