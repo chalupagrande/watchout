@@ -1,7 +1,7 @@
 // Game Options ~~~~~~~
 
 var options = {
-  numEnemies : 10,
+  numEnemies : 30,
   enemy_data : [],
   player_data : [],
   boardSize : 500,
